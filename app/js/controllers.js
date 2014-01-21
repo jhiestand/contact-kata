@@ -2,10 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-  controller('MyCtrl1', [function() {
-
+angular.module('contactApp.controllers', ['contactApp.services']).
+  controller('userListCtrl', ['$scope', 'contactStorage', function($scope, contactStorage) {
+	$scope.contacts = contactStorage.contacts;
   }])
-  .controller('MyCtrl2', [function() {
-
-  }]);

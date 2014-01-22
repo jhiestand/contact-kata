@@ -1,11 +1,12 @@
 <div id="contactList">
-<h1>I am the list</h1>
-<a ng-href="/#/add">Add user</a>
+<h1>Contact List</h1>
+<a class="btn btn-default" ng-click="addContact()">Add contact</a>
 <ul>
+    <h2 class="text-info" ng-hide="contacts.length">No contacts yet</h2>
     <li ng-repeat="contact in contacts">
-    Name:<span style="font-size:30px;">{{ contact.name.name }}</span></br>
-    Address:<span style="font-size:30px;">{{ contact.name.number }}</span></br>
-    Number:<span style="font-size:30px;">{{ contact.name.address }}</span>
+    Name:<span style="font-size:30px;">{{ contact.name }}</span></br>
+    Address:<span style="font-size:30px;">{{ contact.address }}</span></br>
+    Number:<span style="font-size:30px;">{{ contact.number }}</span>
     </li>
 </ul>
 </div>

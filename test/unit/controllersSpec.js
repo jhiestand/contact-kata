@@ -1,7 +1,7 @@
 'use strict';
 
 /* jasmine specs for controllers go here */
-describe('The Contacts List', function(){
+describe('The contact controller', function(){
     var scope = {};
     var ctrl = undefined;
     
@@ -19,7 +19,7 @@ describe('The Contacts List', function(){
         expect(ctrl).toBeDefined();
     });
     
-    it('should have contacts in its scope', function(){
+    it('should contain contacts', function(){
         expect(scope.contacts).toBeDefined();
     });
     

@@ -7,7 +7,12 @@ angular.module('contactApp', [
 'contactApp.services',
 'contactApp.controllers',
 ]).
-
+    controller('sharedUtilityCtrl', ['$scope','$route', 'contactStorage', function($scope, $route, contactStorage){
+        $scope.deleteAll = function(){
+            contactStorage.deleteAll();
+            $route.reload();
+            };  
+    }]).
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
       $routeProvider.when('/', {
       templateUrl: 'partials/list.html', 

@@ -1,14 +1,20 @@
 <div id="editContact">
-<ul>
-    <label>Name</label>
-    <input ng-model="contact.name">
-    <br/>
-    <label>Address</label>
-    <input ng-model="contact.address">
-    <br/>
-    <label>Number</label>
-    <input ng-model="contact.number">
+<form role="form">
+    <div class="form-group">
+    <label for="contactName">Name</label>
+    <input ng-readonly="id" id="contactName" class="form-control" ng-model="contact.name" name="name">
+    </div>
     
-    <button ng-click="save()">Save</button>
-</ul>
+    <div class="form-group">
+    <label for="contactAddress">Address</label>
+    <input id="contactAddress" class="form-control" ng-model="contact.address" name="name">
+    </div>
+    
+    <div class="form-group">
+    <label for="contactNumber">Phone number</label>
+    <input id="contactNumber" class="form-control" ng-model="contact.number" name="name">
+    </div>
+    
+    <button class="btn btn-default" ng-click="save()">Save</button>
+</form>
 </div>

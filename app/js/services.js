@@ -8,9 +8,13 @@
 angular.module('contactApp.services', ['cai.services']).
     factory('contactStorage', ['storageService', function(storageService){
         var contacts = storageService.get('contacts') || [];
+        var slugify = function(words){
+            return words.toLowerCase().replace(/\s+/g, '-');
+        };
         
         return {
             contacts: contacts, 
+            
             create: function(name, address, number){
                 
                 var contact = {};
@@ -20,8 +24,15 @@ angular.module('contactApp.services', ['cai.services']).
                     address: address,
                     number: number
                 };
-                contacts.push(contact);
-                storageService.set('contacts', contacts);
+                
+                if (contact.name == undefined){
+                    throw "Empty value for contact name";
+                }
+                
+                contact['url'] = slugify(contact.name);
+                
+                this.contacts.push(contact);
+                storageService.set('contacts', this.contacts);
                 return contact;
             }, 
             
@@ -29,8 +40,8 @@ angular.module('contactApp.services', ['cai.services']).
                 if (nameKey){
                     var index = this.retrieve(nameKey);
                     if (!(index == undefined)){
-                    contacts.splice(index, 1);
-                    return true;
+                        this.contacts.splice(index, 1);
+                        return true;
                     }
                 }
                 return false;
@@ -44,23 +55,30 @@ angular.module('contactApp.services', ['cai.services']).
                     address: address,
                     number: number
                     }
-                
-                contacts[index] = contact;
-                  
-                storageService.set('contacts', contacts);
+                contact['url'] = slugify(contact.name);
+                this.contacts[index] = contact;
+                 
+                storageService.set('contacts', this.contacts);
                 return contact;
             },
             
             retrieve: function retrieve(nameKey){
                 if (nameKey) {
-                    for (var i = 0; i < contacts.length; i++){
-                        if (nameKey == contacts[i]['name']){
-                            return contacts[i];
+                    for (var i = 0; i < this.contacts.length; i++){
+                        if (nameKey == this.contacts[i]['name']){
+                            return this.contacts[i];
                         }
                     }
                     return undefined;
                 }
                 return undefined;
             },
+            
+            deleteAll: function(){
+                this.contacts = [];
+                storageService.set('contacts', this.contacts);
+                return true;
+            },
+            
         };
 }]);

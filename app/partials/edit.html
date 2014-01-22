@@ -1,20 +1,23 @@
 <div id="editContact">
+<h1>{{ pageName || 'Edit contact' }}</h1>
 <form role="form">
     <div class="form-group">
     <label for="contactName">Name</label>
-    <input ng-readonly="id" id="contactName" class="form-control" ng-model="contact.name" name="name">
+    <input ng-readonly="id || view" id="contactName" class="form-control" ng-model="contact.name" name="name">
     </div>
     
     <div class="form-group">
     <label for="contactAddress">Address</label>
-    <input id="contactAddress" class="form-control" ng-model="contact.address" name="name">
+    <input ng-readonly="view" id="contactAddress" class="form-control" ng-model="contact.address" name="address">
     </div>
     
     <div class="form-group">
     <label for="contactNumber">Phone number</label>
-    <input id="contactNumber" class="form-control" ng-model="contact.number" name="name">
+    <input ng-readonly="view" id="contactNumber" class="form-control" ng-model="contact.number" name="number;">
     </div>
     
+    <button class="btn btn-default" ng-click="cancel()">Cancel</button>
     <button class="btn btn-default" ng-click="save()">Save</button>
 </form>
+
 </div>

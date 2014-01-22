@@ -15,19 +15,26 @@ angular.module('contactApp', [
     }]).
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
       $routeProvider.when('/', {
-      templateUrl: 'partials/list.html', 
-      controller: 'contactListCtrl'
+        templateUrl: 'partials/list.html', 
+        controller: 'contactListCtrl'
       });
       
+      $routeProvider.when('/contact/:id', {
+        templateUrl: 'partials/edit.html',
+        controller: 'contactEditCtrl',
+        });
+        
       $routeProvider.when('/add/', {
-      templateUrl: 'partials/edit.html', 
-      controller: 'contactEditCtrl'
+        templateUrl: 'partials/edit.html', 
+        controller: 'contactEditCtrl'
       });
       
       $routeProvider.when('/edit/:id', {
-      templateUrl: 'partials/edit.html', 
-      controller: 'contactEditCtrl'
+        templateUrl: 'partials/edit.html', 
+        controller: 'contactEditCtrl'
       });
+      
+      $routeProvider.otherwise({redirectTo: '/'});
       
 }]);
 

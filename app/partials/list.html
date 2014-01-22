@@ -1,12 +1,20 @@
 <div id="contactList">
 <h1>Contact List</h1>
 <a class="btn btn-default" ng-click="addContact()">Add contact</a>
-<ul>
+<ul style="list-style:none;" class="container">
     <h2 class="text-info" ng-hide="contacts.length">No contacts yet</h2>
-    <li ng-repeat="contact in contacts">
-    Name:<span style="font-size:30px;">{{ contact.name }}</span></br>
-    Address:<span style="font-size:30px;">{{ contact.address }}</span></br>
-    Number:<span style="font-size:30px;">{{ contact.number }}</span>
+    
+    <span class="col-md-4">Name</span><span class="col-md-4">Address</span><span class="col-md-4">Number</span>
+    <div class="clearfix"></div>
+    <li ng-repeat="contact in contacts" class="container" style="padding:0;margin:0;border-bottom:1px solid black;">
+    <div class="col-md-4 alert alert-success" style="font-size:30px;">{{ contact.name }}</div>
+    <div class="col-md-4 alert alert-info" style="font-size:30px;">{{ contact.address }}</div>
+    <div class="col-md-4 alert alert-warning" style="font-size:30px;">{{ contact.number }}</div>
+    <a class="btn btn-default" ng-click="viewContact(contact.name)">View</a>
+    <a class="btn btn-default" ng-click="editContact(contact.name)">Edit</a>
+    <button ng-click="deleteContact(contact.name)" class="btn btn-info">Delete</button>
     </li>
+    
 </ul>
 </div>
+<button class="btn btn-warning" ng-click="deleteAll()">Delete everyone</button>

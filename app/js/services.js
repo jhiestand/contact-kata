@@ -76,7 +76,7 @@ angular.module('contactApp.services', ['cai.services']).
                 if (nameKey) {
                     for (var i = 0; i < this.contacts.length; i++){
                         if (nameKey == this.contacts[i]['name']){
-                            return this.contacts[i], i;
+                            return this.contacts[i];
                         }
                     }
                     return undefined;

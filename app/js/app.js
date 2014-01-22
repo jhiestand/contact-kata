@@ -16,17 +16,17 @@ angular.module('contactApp', [
     config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
       $routeProvider.when('/', {
       templateUrl: 'partials/list.html', 
-      controller: 'userListCtrl'
+      controller: 'contactListCtrl'
       });
       
       $routeProvider.when('/add/', {
       templateUrl: 'partials/edit.html', 
-      controller: 'userEditCtrl'
+      controller: 'contactEditCtrl'
       });
       
       $routeProvider.when('/edit/:id', {
       templateUrl: 'partials/edit.html', 
-      controller: 'userEditCtrl'
+      controller: 'contactEditCtrl'
       });
       
 }]);

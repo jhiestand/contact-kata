@@ -16,7 +16,6 @@ angular.module('contactApp.services', ['cai.services']).
             contacts: contacts, 
             
             create: function(name, address, number){
-                
                 var contact = {};
                 
                 contact = {
@@ -25,11 +24,15 @@ angular.module('contactApp.services', ['cai.services']).
                     number: number
                 };
                 
-                if (contact.name == undefined){
-                    throw "Empty value for contact name";
+                if ((contact.name.length && contact.address.length && contact.number.length) == 0){
+                    throw "Empty values";
                 }
                 
-                contact['url'] = slugify(contact.name);
+                if (this.retrieve(contact['name']) != undefined) {
+                    throw "This contact already exists";
+                }
+                 
+                // contact['url'] = slugify(contact.name);
                 
                 this.contacts.push(contact);
                 storageService.set('contacts', this.contacts);
@@ -37,25 +40,32 @@ angular.module('contactApp.services', ['cai.services']).
             }, 
             
             delete: function(nameKey){
-                if (nameKey){
-                    var index = this.retrieve(nameKey);
-                    if (!(index == undefined)){
-                        this.contacts.splice(index, 1);
-                        return true;
+                    var _contact, index = this.retrieve(nameKey);
+                    
+                    if (nameKey.length == 0 || nameKey == undefined){
+                        throw "Missing name to delete";
                     }
-                }
-                return false;
+                    
+                    if (index == undefined){
+                        throw "No contact by that name";   
+                    }
+                this.contacts.splice(index, 1);
+                return true;
             },
             
             update: function(name, address, number){
-                var index = this.retrieve(name);
-                var contact = {};
-                contact = {
+                var _contact, index = this.retrieve(name);
+                var contact = {
                     name: name,
                     address: address,
                     number: number
                     }
-                contact['url'] = slugify(contact.name);
+                
+                if (index == undefined){
+                    throw "Contact does not exist yet";
+                    }
+                    
+                // contact['url'] = slugify(contact.name);
                 this.contacts[index] = contact;
                  
                 storageService.set('contacts', this.contacts);
@@ -66,13 +76,17 @@ angular.module('contactApp.services', ['cai.services']).
                 if (nameKey) {
                     for (var i = 0; i < this.contacts.length; i++){
                         if (nameKey == this.contacts[i]['name']){
-                            return this.contacts[i];
+                            return this.contacts[i], i;
                         }
                     }
                     return undefined;
                 }
                 return undefined;
             },
+            
+            retrieveAll: function(){
+                return this.contacts
+                },
             
             deleteAll: function(){
                 this.contacts = [];

@@ -62,8 +62,5 @@ angular.module('contactApp.services', ['cai.services']).
                 }
                 return undefined;
             },
-        getAll: function(){
-            return contacts;
-            }
         };
 }]);

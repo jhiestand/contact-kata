@@ -1,0 +1,11 @@
+<div id="contactList">
+<h1>I am the list</h1>
+<a ng-href="/#/add">Add user</a>
+<ul>
+    <li ng-repeat="contact in contacts">
+    Name:<span style="font-size:30px;">{{ contact.name.name }}</span></br>
+    Address:<span style="font-size:30px;">{{ contact.name.number }}</span></br>
+    Number:<span style="font-size:30px;">{{ contact.name.address }}</span>
+    </li>
+</ul>
+</div>

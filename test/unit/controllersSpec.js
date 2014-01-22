@@ -15,7 +15,34 @@ describe('The Contacts List', function(){
         });   
     }));
     
-    it('should have contacts in its scope', function(){
-        expect(scope).toBeDefined();
+    it('should exist', function(){
+        expect(ctrl).toBeDefined();
     });
+    
+    it('should have contacts in its scope', function(){
+        expect(scope.contacts).toBeDefined();
+    });
+    
+    
 });
+
+/* describe('The Contacts Editing', function(){
+    var scope = {};
+    var ctrl = undefined;
+    
+    beforeEach(module('contactApp.controllers'));
+    beforeEach(module('contactApp'));
+    
+    beforeEach(inject(function($controller, $rootScope){
+        scope = $rootScope.$new();
+        ctrl = $controller('userEditCtrl', {
+            $scope: scope
+        });   
+    }));
+    
+     it('should create contacts from contactStorage', function(){
+        var contact = scope.methods.create('Bob', 'Valley', '123');
+        expect(contact.name).toEqual('Bob');
+    });
+    
+}); */
